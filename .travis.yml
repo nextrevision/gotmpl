@@ -1,0 +1,31 @@
+language: go
+go:
+- 1.8
+install:
+- go get -u github.com/kardianos/govendor
+- govendor sync
+script:
+- govendor vet +local
+- govendor test -v +local
+before_deploy:
+- GOOS=linux GOARCH=amd64 govendor build -o gotmpl_linux_amd64
+- GOOS=linux GOARCH=386 govendor build -o gotmpl_linux_386
+- GOOS=darwin GOARCH=amd64 govendor build -o gotmpl_darwin_amd64
+- GOOS=darwin GOARCH=386 govendor build -o gotmpl_darwin_386
+- GOOS=windows GOARCH=amd64 govendor build -o gotmpl_windows_amd64.exe
+- GOOS=windows GOARCH=386 govendor build -o gotmpl_windows_386.exe
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: ZIP4Y408P7ogJInBBtISvtOkaf8ejleOFnPE3j1QGAIiRteumASn8tIYMg2xm69BtrsE7SaU3c57OeJSOaRMXetBhHYMFT9bhCPk7S4pA4zy3904jiTIOyKCO8nIiJHONb9SVqUKB8v9yKgOmRt4tk/5fG6luYSUmvQDtXewNfMLUYBQqtF3aVHBfMIA6WGESHXYYBN9mBMLL/W5/vipPzJtpIai6W+OjEYjGUYfX0W6X3qM6npMew4HKSLrl6v7ANj43D08CXLpa/HQQ0K/dNX8gIqdd/TwlJcCM5dowIiYcI74llUPREBCHl8r+y0jB0KKfmy3RRd0Vc8ZT+Cpxwe5gWLoZfRTAAUphnfyGZANTsvvETtB5qBcb6/gwzwSt8/odDJld7wWYT+L/ZyPC0xez+M2rtBwN2AnTBOnyK9/8y3eeXvPbz9JDFv7xHBLNGfeWWwiEvbY5ptLkcsfgRZagTtM/Bn66wMa4P0CfhSz/ib/AAUsyjE7bWnv4dlbcOpQcQqD1c2R884JMgXzr9u9iWiV1FE1PXbZ3Tm+4syCFN+qGdF4kxtD42LOIf1YmI3cyNopXhiZRYY1C8eIduD0O6pu3nFDBXLVErHR3zYRBE6BuBzp3LgxxdxCxxoD684HqbrDczcOun+z88AehXiALzbe+rcpOQ/FAM/LbY4=
+  file:
+  - gotmpl_linux_amd64
+  - gotmpl_linux_386
+  - gotmpl_darwin_amd64
+  - gotmpl_darwin_386
+  - gotmpl_windows_amd64.exe
+  - gotmpl_windows_386.exe
+  on:
+    tags: true
+    repo: nextrevision/gotmpl
