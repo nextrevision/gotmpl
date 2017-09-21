@@ -131,7 +131,6 @@ Values can be encrypted (see "Encrypting Values" section), but must be prefixed 
 ## Encrypting Values
 
 ### In vars files (YAML or env)
-mykey: ENC|NTlkODJmYmM0ZThkZDMwOWZlZjlhMjAyOmY1ZjU3ZTIyZTk5OGE1MmY5YzA5NTY0ZDU4ZGFjOGY3NWM5YmE3MTA1MTU1ZWQwZQ==
 When working with encrypted values, anything that is used in a vars file (YAML or ENV) must be prefixed with `ENC|`. This distinction lets gotmpl know when processing a vars file to decrypt that value. For example:
 
 ```
