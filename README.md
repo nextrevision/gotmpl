@@ -44,21 +44,21 @@ Use "gotmpl [command] --help" for more information about a command.
 Encrypt the string "mysecret" to stdout using password "abcdefghijklmnopqrstuvwxyz012345":
 
 ```
-$ gotmpl encrypt -p abcdefghijklmnopqrstuvwxyz012345 -v mysecret
-MzY1YTYwODUzMTRiZTE0YWVhYzJiZDk4OjA1M2JlNmJjNzNlMWYyY2QwYzg4YjNhYjU3OTkyYTZiZDM1MzA1MjcwZGVjNzc1NA==
+$ gotmpl encrypt -p password -v mysecret
+OWUxYTE5OTZkZjViMjBkMjkxNWQxZTJjOmM0NzY3YjQyYjY3NmRiZmY4ZTllODU5ZThiYzk5ZWQ2OTUyMmU4ZGZmMjRhNWI5Mg==
 ```
 
 Encrypt the string "mysecret" to stdout to be added to a YAML file with key "mykey":
 
 ```
-$ gotmpl encrypt -p abcdefghijklmnopqrstuvwxyz012345 -v mysecret -k mykey
-mykey: ENC|N2E3NTJjNDI2NmViMTRjMjZhMWIxNmI2OmVjYTNjYjdmN2ZhYTVmMzk0ZDVhMjUxZGQ3YzNiMTIzYzRiMTE2ZTdlNTM1M2M3ZA==
+$ gotmpl encrypt -p password -v mysecret -k mykey
+mykey: ENC|ZWU4YzJmYzk2Y2NlNDg1NWU5Yjg4OTEyOmVjMGExMDc1NDRjMjhjZTRkMmE3ZDA2ZWNkZTUyYzEyZGQ3N2E3ZjRhOTdlZDJiNw==
 ```
 
 Encrypting and inserting the result key into a file:
 
 ```
-$ gotmpl encrypt -p abcdefghijklmnopqrstuvwxyz012345 -v mysecret -k mykey -y examples/vars.yml
+$ gotmpl encrypt -p password -v mysecret -k mykey -y examples/vars.yml
 Variable mykey inserted into examples/vars.yml
 ```
 
@@ -67,14 +67,14 @@ Variable mykey inserted into examples/vars.yml
 Decrypting a single value to STDOUT:
 
 ```
-$ gotmpl decrypt -p abcdefghijklmnopqrstuvwxyz012345 -v N2E3NTJjNDI2NmViMTRjMjZhMWIxNmI2OmVjYTNjYjdmN2ZhYTVmMzk0ZDVhMjUxZGQ3YzNiMTIzYzRiMTE2ZTdlNTM1M2M3ZA==
+$ gotmpl decrypt -p password -v OWUxYTE5OTZkZjViMjBkMjkxNWQxZTJjOmM0NzY3YjQyYjY3NmRiZmY4ZTllODU5ZThiYzk5ZWQ2OTUyMmU4ZGZmMjRhNWI5Mg==
 mysecret
 ```
 
 Decrypting a vars file containing encrypted values:
 
 ```
-$ gotmpl decrypt -p abcdefghijklmnopqrstuvwxyz012345 -y examples/vars.yml
+$ gotmpl decrypt -p password -y examples/vars.yml
 File decrypted to examples/vars.yml.unenc
 ```
 
@@ -93,7 +93,7 @@ Static value
 Render a template to STDOUT sourcing vars from the environment and a vars file w/ encrytped values:
 
 ```
-$ gotmpl render -t examples/template.tmpl -y examples/vars.yml -p abcdefghijklmnopqrstuvwxyz012345
+$ gotmpl render -t examples/template.tmpl -y examples/vars.yml -p password
 # Static Key
 Static value
 # Key1
@@ -101,7 +101,6 @@ value1
 # Encrypted Key
 encValue1
 # Inline Encryped Key
-# password: abcdefghijklmnopqrstuvwxyz012345
 encInline
 # Env Var
 /usr/local/bin/bash

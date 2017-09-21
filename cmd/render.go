@@ -22,7 +22,7 @@ IMPORTANT: environment variables always overwrite values from the vars file.
   // render using env vars and keys from 'vars.yml'
   gotmpl render -t template.tmpl -y vars.yml
   // decrypt any variables (inline or in a file) using a password
-  gotmpl render -t template.tmpl -y vars.yml -p abcdefghijklmnopqrstuvwxyz012345
+  gotmpl render -t template.tmpl -y vars.yml -p password
   // write the rendered template to a specific file
   gotmpl render -t template.tmpl -o template.txt
 

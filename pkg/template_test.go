@@ -8,7 +8,7 @@ const outFile = "../examples/template.out"
 func TestConvertTemplate(t *testing.T) {
 	vars := make(map[string]interface{})
 	vars["key1"] = "value1"
-	vars["encKey1"] = "ENC|YTJiYmFhYjAwNzg3NzZmNzI0MWMzNWE2Ojk0ZTIzYTMyMTBlZDZkMDdkMmNmZjY5OGYxNGM0N2FkNzMyNjc1M2ZkNDFiODE5NGE5"
+	vars["encKey1"] = "ENC|ZGIzMjFmMjAzYTE0MDg5MjJkOGZhMTQ5Ojk1ZmI0ZWZmMWZjZWRhM2MyZGZhNjQyODExNmJmZDJlMzhjNzUyMTYzNzNiM2IyNDdi"
 
 	err := ConvertTemplate(templateFile, vars, outFile, password)
 	if err != nil {
@@ -19,7 +19,7 @@ func TestConvertTemplate(t *testing.T) {
 func TestConvertTemplateNoFile(t *testing.T) {
 	vars := make(map[string]interface{})
 	vars["key1"] = "value1"
-	vars["encKey1"] = "ENC|YTJiYmFhYjAwNzg3NzZmNzI0MWMzNWE2Ojk0ZTIzYTMyMTBlZDZkMDdkMmNmZjY5OGYxNGM0N2FkNzMyNjc1M2ZkNDFiODE5NGE5"
+	vars["encKey1"] = "ENC|ZGIzMjFmMjAzYTE0MDg5MjJkOGZhMTQ5Ojk1ZmI0ZWZmMWZjZWRhM2MyZGZhNjQyODExNmJmZDJlMzhjNzUyMTYzNzNiM2IyNDdi"
 
 	err := ConvertTemplate("./template.tmpl", vars, outFile, password)
 	if err == nil {

@@ -16,18 +16,18 @@ var encryptCmd = &cobra.Command{
   Examples:
 
   // encrypts 'test' to stdout
-  gotmpl encrypt -p abcdefghijklmnopqrstuvwxyz012345 -v test
+  gotmpl encrypt -p password -v test
   // encrypts 'test' to stdout to be pasted into a YAML file
-  gotmpl encrypt -p abcdefghijklmnopqrstuvwxyz012345 -v test -k mykey
+  gotmpl encrypt -p password -v test -k mykey
   // encrypts 'test' and writes it to 'mykey' in a YAML file
-  gotmpl encrypt -p abcdefghijklmnopqrstuvwxyz012345 -v test -k mykey -y myyamlfile.yml
+  gotmpl encrypt -p password -v test -k mykey -y myyamlfile.yml
 
 	`,
 	SilenceUsage:  true,
 	SilenceErrors: true,
 	Args: func(cmd *cobra.Command, args []string) error {
-		if len(password) != 32 {
-			return fmt.Errorf("Password must be exactly 32 characters, not %d. Try running 'gotmpl genpasswd'", len(password))
+		if password == "" {
+			return fmt.Errorf("Must supply a password")
 		}
 		if value == "" {
 			return fmt.Errorf("Must supply a value to encrypt")

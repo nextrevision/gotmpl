@@ -4,6 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
+	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
@@ -12,7 +13,7 @@ import (
 )
 
 func EncryptString(value string, password string) (string, error) {
-	key := []byte(password)
+	key := hashTo32Bytes(password)
 	plaintext := []byte(value)
 
 	block, err := aes.NewCipher(key)
@@ -36,7 +37,7 @@ func EncryptString(value string, password string) (string, error) {
 }
 
 func DecryptString(value string, password string) (string, error) {
-	key := []byte(password)
+	key := hashTo32Bytes(password)
 
 	data, err := base64.StdEncoding.DecodeString(value)
 	if err != nil {
@@ -91,4 +92,9 @@ func DecryptValues(values map[string]interface{}, password string) (map[string]i
 		}
 	}
 	return values, nil
+}
+
+func hashTo32Bytes(input string) []byte {
+	data := sha256.Sum256([]byte(input))
+	return data[0:]
 }

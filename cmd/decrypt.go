@@ -16,17 +16,14 @@ var decryptCmd = &cobra.Command{
   Examples:
 
   // decrypts an entire file to vars.yml.unenc
-  gotmpl decrypt -p abcdefghijklmnopqrstuvwxyz012345 -y vars.yml
+  gotmpl decrypt -p password -y vars.yml
   // decrypts a single value to stdout
-  gotmpl decrypt -p abcdefghijklmnopqrstuvwxyz012345 -v N2E3NTJjNDI2NmViMTRjMjZhMWIxNmI2OmVjYTNjYjdmN2ZhYTVmMzk0ZDVhMjUxZGQ3YzNiMTIzYzRiMTE2ZTdlNTM1M2M3ZA==
+  gotmpl decrypt -p password -v NjExMDlmY2QyOTc4MTg0MTFkZDBhYjM5OmEzMTFkMjU4ODU5M2U3ZWJmZTdjNDMxMWEzY2VhNzlmNTJiOWUzZGI=
 
 	`,
 	Args: func(cmd *cobra.Command, args []string) error {
 		if password == "" {
 			return fmt.Errorf("Must supply a password")
-		}
-		if len(password) != 32 {
-			return fmt.Errorf("Password must be exactly 32 characters, not %d. Try running 'gotmpl genpasswd'", len(password))
 		}
 		if yamlfile != "" && envfile != "" {
 			return fmt.Errorf("Vars file can only either be YAML or ENV")

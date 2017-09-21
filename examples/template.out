@@ -3,9 +3,3 @@ Static value
 # Key1
 value1
 # Encrypted Key
-encValue1
-# Inline Encryped Key
-# password: abcdefghijklmnopqrstuvwxyz012345
-encInline
-# Env Var
-/usr/local/bin/bash
