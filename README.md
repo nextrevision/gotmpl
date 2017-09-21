@@ -7,7 +7,7 @@ CLI tool for rendering templates that supports environment variables, variable f
 Download a pre-built binary from the releases (see [Releases](https://github.com/nextrevision/gotmpl/releases)):
 
 ```
-wget https://github.com/nextrevision/gotmpl/releases/download/0.1.0/gotmpl_darwin_amd64
+wget https://github.com/nextrevision/gotmpl/releases/download/0.1.1/gotmpl_darwin_amd64
 chmod +x gotmpl_darwin_amd64
 ```
 
